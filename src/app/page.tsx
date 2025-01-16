@@ -1,3 +1,10 @@
+import Category from "@/components/Category";
+import Container from "@/components/Container";
+
 export default function HomePage() {
-  return <h1>hello world</h1>
-};
+  return (
+    <Container className="lg:px-20 md:px-[70px] px-6">
+     <Category />
+    </Container>
+  );
+}
