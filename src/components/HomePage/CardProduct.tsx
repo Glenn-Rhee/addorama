@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function CardProduct() {
   return (
     <Link
-      href={"/"}
+      href={"/product"}
       className="flex flex-col p-3 gap-y-2 shadow-[1px_1px_10px_4px_rgba(0,_0,_0,_0.1)] rounded-sm"
     >
       <div className="w-full flex items-center justify-center">

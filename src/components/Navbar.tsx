@@ -41,7 +41,9 @@ export default function Navbar() {
           <Link href={"/favorite"}>
             <Heart size={25} className="cursor-pointer" />
           </Link>
-          <User size={25} className="cursor-pointer" />
+          <Link href={"/profile"}>
+            <User size={25} className="cursor-pointer" />
+          </Link>
         </div>
         <div className="block lg:hidden">
           <DropdownMenu>
