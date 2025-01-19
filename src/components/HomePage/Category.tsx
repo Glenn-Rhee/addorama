@@ -1,17 +1,38 @@
-export default function Category() {
+"use client";
+import { useEffect } from "react";
+import OptionCategory from "./OptionCategory";
+import { useRouter } from "next/navigation";
+
+interface CategoryProps {
+  category: string | undefined;
+}
+
+export default function Category(props: CategoryProps) {
+  const { category } = props;
+  const router = useRouter();
+  useEffect(() => {
+    if (
+      category !== "all" &&
+      category !== "laptop" &&
+      category !== "accessories"
+    ) {
+      router.push("/");
+    }
+  }, [category, router]);
+
   return (
     <div className="p-4 w-full rounded-md shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.1)] ">
-      <h2 className="font-bold text-[#191C1F] text-xl">Kategori Pilihan</h2>
-      <div className="mt-4 grid grid-cols-3 gap-x-2 p-0">
-        <button className="flex justify-center rounded-xl px-4 py-2 bg-orange p-0">
-          <span className="text-white font-bold text-xs md:text-sm">All</span>
-        </button>
-        <button className="flex justify-center rounded-xl px-4 py-2 border border-gray-400/40  p-0">
-          <span className="text-[#191C1F] font-bold text-xs md:text-sm">Laptop</span>
-        </button>
-        <button className="flex justify-center rounded-xl px-4 py-2 border border-gray-400/40  p-0">
-          <span className="text-[#191C1F] font-bold text-xs md:text-sm">Aksesoris</span>
-        </button>
+      <h2 className="font-bold text-[#191C1F] text-xl">Category</h2>
+      <div className="mt-4 grid grid-cols-3 gap-x-3 p-0">
+        <OptionCategory
+          active={category !== "laptop" && category !== "accessories"}
+        >
+          All
+        </OptionCategory>
+        <OptionCategory active={category === "laptop"}>Laptop</OptionCategory>
+        <OptionCategory active={category === "accessories"}>
+          Accessories
+        </OptionCategory>
       </div>
     </div>
   );
