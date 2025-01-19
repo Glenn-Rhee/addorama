@@ -35,8 +35,12 @@ export default function Navbar() {
         <SearchProduct className="" />
         <div className="lg:flex hidden items-center gap-x-7 text-white">
           {/* <ShoppingCart size={25} className="cursor-pointer" /> */}
-          <CartFill size={25} />
-          <Heart size={25} className="cursor-pointer" />
+          <Link href={"/cart"}>
+            <CartFill size={25} />
+          </Link>
+          <Link href={"/favorite"}>
+            <Heart size={25} className="cursor-pointer" />
+          </Link>
           <User size={25} className="cursor-pointer" />
         </div>
         <div className="block lg:hidden">
@@ -48,11 +52,15 @@ export default function Navbar() {
               <DropdownMenuGroup>
                 <DropdownMenuItem className="flex items-center gap-x-3">
                   <CartFill size={18} />
-                  <span className="text-sm font-semibold">Cart</span>
+                  <Link href={"/cart"} className="text-sm font-semibold">
+                    Cart
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="flex items-center gap-x-3">
                   <Heart size={25} className="cursor-pointer" />
-                  <span className="text-sm font-semibold">Favorite</span>
+                  <Link href={"/favorite"} className="text-sm font-semibold">
+                    Favorite
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="flex items-center gap-x-3">
                   <UserRound size={25} />
