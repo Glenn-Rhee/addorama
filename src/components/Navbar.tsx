@@ -15,7 +15,7 @@ import Container from "./Container";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 right-0 left-0 px-4 py-2 md:px-10 md:py-5 bg-[#1B6392]">
+    <nav className="fixed top-0 z-50 right-0 left-0 px-4 py-2 md:px-10 md:py-5 bg-[#1B6392]">
       <Container className="flex items-center justify-between mt-0 md:mt-0 lg:mt-0">
         <Link
           href={"/"}
