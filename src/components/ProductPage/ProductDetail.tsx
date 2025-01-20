@@ -1,7 +1,10 @@
-import { Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { Separator } from "../ui/separator";
 import Image from "next/image";
 import Delivery from "./Delivery";
+import { Badge } from "../ui/badge";
+import Link from "next/link";
+import PurchaseCard from "./PurchaseCard";
 
 export default function ProductDetail() {
   return (
@@ -18,6 +21,11 @@ export default function ProductDetail() {
               <span className="text-gray-500 font-normal">(500 rating)</span>
             </span>
             <Separator orientation="vertical" className="bg-myBlack" />
+            <Heart size={20} color="rgb(220 38 38)" fill="rgb(220 38 38)" />
+            <span className="text-sm font-semibold text-myBlack">
+              100 <span className="text-gray-500 font-normal">Favorite</span>
+            </span>
+            <Separator orientation="vertical" className="bg-myBlack" />
             <span className="text-sm font-semibold text-myBlack">
               5.9k <span className="text-gray-500 font-normal">review</span>
             </span>
@@ -27,6 +35,14 @@ export default function ProductDetail() {
           <span className="text-myBlue font-bold text-lg md:text-xl lg:text-3xl">
             Rp12.000.000
           </span>
+          <div className="flex items-center gap-x-1 mt-1">
+            <Badge className="rounded-sm bg-red-200 text-red-600 font-bold px-2 py-0">
+              50%
+            </Badge>
+            <span className="text-base line-through font-semibold text-gray-400">
+              Rp24.000.000
+            </span>
+          </div>
         </div>
       </div>
       <div className="mt-8">
@@ -39,7 +55,7 @@ export default function ProductDetail() {
           ad perferendis, impedit tenetur. Illum, fugiat accusantium!
         </p>
         <div className="flex justify-between items-center min-w-full mt-10">
-          <div className="flex gap-x-3">
+          <Link href={"/store/123"} className="flex gap-x-3">
             <Image
               src="/prof.jpg"
               alt="Profile picture store"
@@ -60,7 +76,7 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
           <div>
             <button className="border border-myBlue text-myBlue px-4 rounded-lg py-1 font-semibold hover:bg-myBlue hover:text-white transition-all duration-75 active:bg-blue-600">
               Follow
@@ -69,6 +85,7 @@ export default function ProductDetail() {
         </div>
       </div>
       <Delivery />
+      <PurchaseCard />
     </div>
   );
 }
