@@ -22,7 +22,7 @@ export default function PurchaseCard() {
       <h5 className="font-bold text-myBlack">Set Amounts</h5>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-2 lg:gap-y-0 lg:gap-x-1 mt-4">
         <div className="grid grid-cols-[70%_1fr] lg:grid-cols-[55%_1fr] items-center gap-x-2 w-full">
-          <div className="py-0 px-3 rounded-sm border items-center border-myBlue/40 flex justify-between">
+          <div className="py-0 px-3 rounded-sm border  max-w-[200px] items-center border-myBlue/40 flex justify-between">
             <button
               disabled={disable}
               onClick={() => {

@@ -6,7 +6,7 @@ export default function CardProduct() {
   return (
     <Link
       href={"/product"}
-      className="flex flex-col p-3 gap-y-2 shadow-[1px_1px_10px_4px_rgba(0,_0,_0,_0.1)] rounded-sm"
+      className="flex flex-col p-3 gap-y-2 shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] rounded-sm"
     >
       <div className="w-full flex items-center justify-center">
         <Image

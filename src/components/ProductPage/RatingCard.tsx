@@ -3,7 +3,7 @@ import { Progress } from "../ui/progress";
 
 export default function RatingCard() {
   return (
-    <div className="grid grid-cols-3 border border-gray-500/30 px-5 py-6 rounded-md bg-white">
+    <div className="grid grid-cols-1 md:grid-cols-3 border border-gray-500/30 px-5 py-6 rounded-md bg-white">
       <div className="space-y-3">
         <div className="flex gap-x-2 items-center">
           <Star color="yellow" fill="yellow" size={28} />
@@ -20,7 +20,7 @@ export default function RatingCard() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-4 mt-8 md:mt-0">
         <div className="flex items-center gap-x-2">
           <Star fill="yellow" color="yellow" size={15} />
           <span className="text-sm font-semibold text-myBlack">5</span>
@@ -40,7 +40,7 @@ export default function RatingCard() {
           <span className="text-gray-500 font-semibold text-sm">(40)</span>
         </div>
       </div>
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-4 mt-4 md:mt-0">
         <div className="flex items-center gap-x-2">
           <Star fill="yellow" color="yellow" size={15} />
           <span className="text-sm font-semibold text-myBlack">2</span>

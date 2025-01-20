@@ -21,7 +21,7 @@ export default function Category(props: CategoryProps) {
   }, [category, router]);
 
   return (
-    <div className="p-4 w-full rounded-md shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.1)] ">
+    <div className="p-4 w-full rounded-md shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] ">
       <h2 className="font-bold text-[#191C1F] text-xl">Category</h2>
       <div className="mt-4 grid grid-cols-3 gap-x-3 p-0">
         <OptionCategory
