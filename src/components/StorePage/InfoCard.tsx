@@ -13,7 +13,7 @@ export default function InfoCard(props: InfoCardProps) {
           {value}
         </span>
       </div>
-      <span className="text-xs text-center text-gray-700">{title}</span>
+      <span className="text-xs lg:text-sm text-center text-gray-700">{title}</span>
     </div>
   );
 }
