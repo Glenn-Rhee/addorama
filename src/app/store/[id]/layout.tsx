@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+import AboutStore from "@/components/StorePage/AboutStore";
 import NavbarStore from "@/components/StorePage/NavbarStore";
 import StoreCard from "@/components/StorePage/StoreCard";
 
@@ -14,6 +15,7 @@ export default function ReviewLayour({
         <NavbarStore />
       </Container>
       {children}
+      <AboutStore />
     </section>
   );
 }
