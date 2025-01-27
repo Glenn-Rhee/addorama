@@ -12,7 +12,7 @@ export default function ReviewCard(props: ReviewCardProps) {
   const { avatarImage, username, isSeller, children, time } = props;
   return (
     <>
-      <div className="flex items-center gap-x-2">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-x-2">
         {avatarImage}
         <span className="font-bold text-myBlack">{username}</span>
         {isSeller ? (

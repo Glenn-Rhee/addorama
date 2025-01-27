@@ -29,7 +29,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="./letter-a.png" type="image/x-icon" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <Navbar />
         {children}

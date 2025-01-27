@@ -6,7 +6,7 @@ import AccordionReview from "./AccordionReview";
 export default function Review() {
   return (
     <div className="flex flex-col gap-y-2 p-2">
-      <div className="flex items-center gap-x-2">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-x-2">
         <div className="flex items-center gap-x-1">
           <Star fill="yellow" color="yellow" size={18} />
           <Star fill="yellow" color="yellow" size={18} />
