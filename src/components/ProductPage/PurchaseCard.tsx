@@ -7,7 +7,7 @@ export default function PurchaseCard() {
   const stock = 10;
 
   return (
-    <div className="w-full px-3 py-2 border border-gray-500/40 rounded-sm mt-8">
+    <div className="w-full bg-white px-3 py-2 border border-gray-500/20 rounded-sm mt-8">
       <h5 className="font-bold text-myBlack">Set Amounts</h5>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-2 lg:gap-y-0 lg:gap-x-1 mt-4">
         <div className="grid grid-cols-[70%_1fr] lg:grid-cols-[55%_1fr] items-center gap-x-2 w-full">
