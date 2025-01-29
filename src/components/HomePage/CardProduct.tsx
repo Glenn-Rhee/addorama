@@ -1,12 +1,21 @@
+import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CardProduct() {
+interface CardProductProps {
+  className?: string;
+}
+
+export default function CardProduct(props: CardProductProps) {
+  const { className } = props;
   return (
     <Link
       href={"/product"}
-      className="flex flex-col p-3 gap-y-2 shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] rounded-sm"
+      className={cn(
+        "flex flex-col p-3 gap-y-2 shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] rounded-sm",
+        className
+      )}
     >
       <div className="w-full flex items-center justify-center">
         <Image
