@@ -44,7 +44,7 @@ export default function ProductCart(props: ProductCartProps) {
       </div>
       <div className="flex flex-col gap-y-4 items-end justify-between py-3">
         <div className="flex flex-col gap-y-1 w-full items-end ">
-          <h6 className="font-bold text-myBlack text-lg">Rp 4.000.000</h6>
+          <h6 className="font-bold text-myBlack text-base md:text-lg">Rp 4.000.000</h6>
           {discount > 0 ? (
             <div className="flex items-center text-sm">
               <span className="text-gray-500 font-semibold">{discount}%</span>

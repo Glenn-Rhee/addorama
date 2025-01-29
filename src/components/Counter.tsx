@@ -37,7 +37,9 @@ export default function Counter(props: CounterProps) {
       >
         &ndash;
       </button>
-      <span className="font-semibold text-myBlue text-lg">{qty}</span>
+      <span className="font-semibold text-myBlue text-base md:text-lg">
+        {qty}
+      </span>
       <button
         className="text-myBlue font-semibold text-xl"
         onClick={() => {

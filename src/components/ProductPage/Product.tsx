@@ -6,8 +6,8 @@ import FilterReview from "./FilterReview";
 
 export default function Product() {
   return (
-    <section>
-      <div className="grid grid-cols-1 md:grid-cols-2 min-w-full gap-x-2">
+    <section className="mt-4">
+      <div className="grid overflow-visible grid-cols-1 md:grid-cols-2 min-w-full gap-x-2">
         <Image
           src={
             "https://utfs.io/f/ukvjWf4frJl0kb6zdswWcKrNhwqZeSE4TFfzAjytUoBQiIHP"
@@ -15,7 +15,7 @@ export default function Product() {
           alt="Product Image"
           width={500}
           height={500}
-          className="w-auto aspect-square justify-self-center"
+          className="w-auto sticky top-24 left-0 aspect-square justify-self-center"
         />
         <ProductDetail />
       </div>
@@ -23,7 +23,7 @@ export default function Product() {
         <h5 className="text-lg md:text-xl font-bold text-myBlack">Rating</h5>
         <RatingCard />
       </section>
-      <section className="mt-8 grid grid-cols-[30%_1fr] px-4 py-2 gap-x-4">
+      <section className="mt-8 overflow-visible grid grid-cols-[30%_1fr] px-4 py-2 gap-x-4">
         <FilterReview />
         <Reviews />
       </section>

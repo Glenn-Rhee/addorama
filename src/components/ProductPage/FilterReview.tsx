@@ -3,7 +3,7 @@ import RatingCheckbox from "./RatingCheckbox";
 
 export default function FilterReview() {
   return (
-    <div className="border max-h-[270px] border-gray-600/20 p-3 rounded-sm">
+    <div className="border max-h-[270px] bg-white sticky top-24 left-0 border-gray-600/20 p-3 rounded-sm">
       <h5 className="uppercase font-semibold text-myBlack">Filter Review</h5>
       <Separator className="my-2 bg-myBlack/60" />
       <h5 className="text-sm font-bold text-myBlack">Rating</h5>
