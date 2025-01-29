@@ -1,6 +1,8 @@
 import CardCart from "@/components/cartpage/CardCart";
 import Container from "@/components/Container";
+import Counter from "@/components/Counter";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Heart, Trash2 } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -37,7 +39,7 @@ export default function CartPage() {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between">
+            <div className="grid grid-cols-[1fr_40%]">
               <div className="flex gap-x-4">
                 <Checkbox className="hover:border-myBlue data-[state=checked]:bg-myBlue data-[state=checked]:border-myBlue" />
                 <Image
@@ -53,12 +55,23 @@ export default function CartPage() {
                   <span className="text-xs md:text-sm font-bold textmy text-orange">
                     Sisa 4
                   </span>
-                  <span className="text-xs md:text-sm text-gray-700">
+                  <span className="text-xs md:text-sm text-myBlack font-[500]">
                     Laptop Lenovo yang mantap aduhai
                   </span>
                 </div>
               </div>
-              <div></div>
+              <div className="flex flex-col items-end justify-between py-3">
+                <div className="flex flex-col gap-y-1 w-full items-end ">
+                  <h6 className="font-bold text-myBlack text-lg">
+                    Rp 5.000.000
+                  </h6>
+                </div>
+                <div className="flex items-center gap-x-4 w-full justify-end">
+                  <Heart color="gray" size={20} />
+                  <Trash2 color="gray" size={20} />
+                  <Counter className="w-[120px] rounded-xl"/>
+                </div>
+              </div>
             </div>
           </CardCart>
         </div>
