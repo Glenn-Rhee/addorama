@@ -10,7 +10,7 @@ export default function SummaryCard(props: SummaryCardProps) {
   return (
     <div
       className={cn(
-        "bg-white mt-4 p-4 rounded-md md:sticky top-24 right-0 max-h-[210px]",
+        "bg-white mt-4 shadow-md p-4 rounded-md md:sticky top-24 right-0 max-h-[210px]",
         className
       )}
     >
