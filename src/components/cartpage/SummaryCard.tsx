@@ -41,7 +41,7 @@ export default function SummaryCard(props: SummaryCardProps) {
           }
         )}
       >
-        Buy (3)
+        Buy {isEmpty ? "":"(3)"}
       </button>
     </div>
   );

@@ -16,6 +16,7 @@ export default function SearchProduct(props: SearchProductProps) {
   const router = useRouter();
 
   function handleSearch() {
+    if (query === "") return;
     router.push("/search?q=" + query);
   }
 
