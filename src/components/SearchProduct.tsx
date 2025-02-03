@@ -1,9 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useSearchStore } from "@/store/searchStore";
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface SearchProductProps {
   className?: string;
@@ -14,12 +15,17 @@ export default function SearchProduct(props: SearchProductProps) {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState<string>(searchParams.get("q") || "");
   const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { setInputRef } = useSearchStore();
+
+  useEffect(() => {
+    setInputRef(inputRef);
+  }, [inputRef, setInputRef]);
 
   function handleSearch() {
     if (query === "") return;
     router.push("/search?q=" + query);
   }
-
   return (
     <div
       className={cn(
