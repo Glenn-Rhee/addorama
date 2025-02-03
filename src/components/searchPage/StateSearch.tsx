@@ -33,7 +33,7 @@ export default function StateSearch(props: StateSearchProps) {
       >
         {icon}
         <span
-          className={cn("font-semibold text-lg md:text-xl text-gray-700", {
+          className={cn("font-semibold text-base md:text-lg text-gray-700", {
             "text-myBlue": isActive,
           })}
         >
