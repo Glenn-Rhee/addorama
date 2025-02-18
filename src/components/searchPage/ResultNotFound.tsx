@@ -5,7 +5,6 @@ import { useSearchStore } from "@/store/searchStore";
 
 export default function ResultNotFound() {
   const { inputRef } = useSearchStore();
-  console.log(inputRef)
   return (
     <Card className="flex items-center gap-x-4 ps-10">
       <Image
@@ -24,11 +23,12 @@ export default function ResultNotFound() {
         </span>
         <button
           onClick={() => {
+            console.log(inputRef);
             if (inputRef && inputRef.current) {
               inputRef.current.focus();
               const length = inputRef.current.value.length;
-              console.log(length)
               inputRef.current.setSelectionRange(length, length);
+              console.log("ok");
             }
           }}
           className="bg-myBlue max-w-[200px] transition-all duration-200 hover:bg-[#1282cd] flex items-center justify-center py-1 rounded-lg text-white font-semibold text-base md:text-lg"

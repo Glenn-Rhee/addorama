@@ -35,6 +35,7 @@ export default function SearchProduct(props: SearchProductProps) {
     >
       <input
         placeholder="Search everything"
+        ref={inputRef}
         type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
