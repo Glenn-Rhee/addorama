@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Addroma Shop",
+  title: "Addorama Shop",
   description: "Jual beli product electronic di Addroma shop",
 };
 

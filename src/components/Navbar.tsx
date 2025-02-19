@@ -1,6 +1,5 @@
-import { Heart, Menu, UserRound } from "lucide-react";
+import { Heart, Menu, User } from "lucide-react";
 import Image from "next/image";
-import User from "./icon/User";
 import Link from "next/link";
 import CartFill from "./icon/CartFill";
 import {
@@ -13,6 +12,7 @@ import {
 import SearchProduct from "./SearchProduct";
 import Container from "./Container";
 import { Suspense } from "react";
+import DropdownUser from "./DropdownUser";
 
 export default function Navbar() {
   return (
@@ -43,9 +43,7 @@ export default function Navbar() {
             <Link href={"/favorite"}>
               <Heart size={25} className="cursor-pointer" />
             </Link>
-            <Link href={"/profile"}>
-              <User size={25} className="cursor-pointer" />
-            </Link>
+            <DropdownUser />
           </div>
           <div className="block lg:hidden">
             <DropdownMenu>
@@ -66,9 +64,13 @@ export default function Navbar() {
                       Favorite
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center gap-x-3">
-                    <UserRound size={25} />
-                    <span className="text-sm font-semibold">Account</span>
+                  <DropdownMenuItem className="">
+                    <DropdownUser>
+                      <button className="flex items-center gap-x-3">
+                        <User size={18} />
+                        <span className="text-sm font-semibold">Account</span>
+                      </button>
+                    </DropdownUser>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
@@ -76,6 +78,9 @@ export default function Navbar() {
           </div>
         </Container>
       </nav>
+      {/* <div className="fixed top-12 h-48 w-56 z-[100] right-10 bg-red-900">
+        s
+      </div> */}
     </Suspense>
   );
 }
