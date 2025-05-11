@@ -13,10 +13,11 @@ interface TriggerChangeProps {
   title: string;
   content: React.ReactNode;
   triggerValue: string;
+  description?: string;
 }
 
 export function TriggerChange(props: TriggerChangeProps) {
-  const { title, content, triggerValue } = props;
+  const { title, content, triggerValue, description } = props;
 
   return (
     <Dialog>
@@ -27,6 +28,7 @@ export function TriggerChange(props: TriggerChangeProps) {
         <DialogHeader>
           <DialogTitle className="text-lg">{title}</DialogTitle>
         </DialogHeader>
+        <span className="text-sm text-gray-500">{description}</span>
         {content}
         <DialogFooter className="w-full">
           <Button

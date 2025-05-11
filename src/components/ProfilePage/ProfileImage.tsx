@@ -5,6 +5,7 @@ import Dropzone, { FileRejection } from "react-dropzone";
 import { Input } from "../ui/input";
 import { Image, Loader2, MousePointerSquareDashed } from "lucide-react";
 import { Progress } from "../ui/progress";
+import ImageUser from "./ImageUser";
 
 export default function ProfileImage() {
   const [uploading, setUploading] = useState(0);
@@ -27,9 +28,11 @@ export default function ProfileImage() {
     setFiles(acceptedFiles);
     setIsDragOver(false);
   };
+  const ImageIcon = Image;
 
   return (
     <div className="min-w-full flex justify-center items-center flex-col">
+      <ImageUser />
       <Dropzone
         onDropAccepted={onDropAccepted}
         onDropRejected={onDropRejected}
@@ -53,8 +56,7 @@ export default function ProfileImage() {
             ) : isUploading ? (
               <Loader2 className="animate-spin h-6 w-6 text-zinc-500 mb-2" />
             ) : (
-              // eslint-disable-next-line jsx-a11y/alt-text
-              <Image className="h-6 w-6 text-zinc-500 mb-2" />
+              <ImageIcon className="h-6 w-6 text-zinc-500 mb-2" />
             )}
 
             <div className="flex flex-col justify-center mb-2 text-sm text-zinc-700">

@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+import ChangeContact from "@/components/ProfilePage/ChangeContact";
 import ChangeProfile from "@/components/ProfilePage/ChangeProfile";
 import ProfileImage from "@/components/ProfilePage/ProfileImage";
 import ShellPersonal from "@/components/ProfilePage/ShellPersonal";
@@ -18,6 +19,7 @@ export default function ProfilePage() {
         </ShellPersonal>
         <ShellPersonal>
           <ChangeProfile />
+          <ChangeContact />
         </ShellPersonal>
       </div>
     </Container>
