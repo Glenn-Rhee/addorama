@@ -5,7 +5,7 @@ import CardProduct from "@/components/HomePage/CardProduct";
 import ShellCardProduct from "@/components/HomePage/ShellCardProduct";
 
 export default function FavoritePage() {
-  const isEmpty = false;
+  const isEmpty = true;
   return (
     <Container className="lg:px-20 md:px-[70px] px-6 mb-[80px] overflow-visible">
       <SearchFavProduct />

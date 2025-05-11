@@ -32,9 +32,11 @@ export default function DropdownUser(props: DropdownUserProps) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator color="red" />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer">
-            <Link href={"/profile"}>Profile</Link>
-          </DropdownMenuItem>
+          <Link href={"/profile"}>
+            <DropdownMenuItem className="cursor-pointer">
+              Profile
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem className="cursor-pointer">
             Log out
           </DropdownMenuItem>
