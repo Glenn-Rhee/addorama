@@ -1,18 +1,20 @@
+import { ProductMain, ResponsePayload } from "@/types";
 import CardProduct from "./CardProduct";
 import ShellCardProduct from "./ShellCardProduct";
 
-export default function Cards() {
+interface CardsProps {
+  dataResponse: ResponsePayload;
+}
+
+export default function Cards(props: CardsProps) {
+  const { dataResponse } = props;
+  const data = dataResponse.data as ProductMain[];
+
   return (
     <ShellCardProduct>
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
+      {data.map((product) => (
+        <CardProduct data={product} key={product.id} />
+      ))}
     </ShellCardProduct>
   );
 }

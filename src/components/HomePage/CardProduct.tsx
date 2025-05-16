@@ -1,17 +1,19 @@
 import { cn } from "@/lib/utils";
+import { ProductMain } from "@/types";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface CardProductProps {
   className?: string;
+  data: ProductMain;
 }
 
 export default function CardProduct(props: CardProductProps) {
-  const { className } = props;
+  const { className, data } = props;
   return (
     <Link
-      href={"/product"}
+      href={"/product?id=" + data.id}
       className={cn(
         "flex flex-col p-3 gap-y-2 shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] rounded-sm",
         className
@@ -19,9 +21,7 @@ export default function CardProduct(props: CardProductProps) {
     >
       <div className="w-full flex items-center justify-center">
         <Image
-          src={
-            "https://utfs.io/f/ukvjWf4frJl0kb6zdswWcKrNhwqZeSE4TFfzAjytUoBQiIHP"
-          }
+          src={data.urlImage}
           alt="Product Image"
           width={100}
           height={100}
@@ -29,6 +29,9 @@ export default function CardProduct(props: CardProductProps) {
         />
       </div>
       <div className="flex flex-col gap-y-2">
+        <h4 className="text-myBlack font-semibold text-lg">
+          {data.productName}
+        </h4>
         <div className="flex items-center gap-x-1">
           <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
           <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
@@ -38,11 +41,11 @@ export default function CardProduct(props: CardProductProps) {
           <span className="text-gray-400 text-sm">(104)</span>
         </div>
         <p className="text-[#191C1F] line-clamp-2 text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-          dolorum officiis explicabo eius architecto blanditiis temporibus
-          eveniet aliquam laudantium voluptatem.
+          {data.description}
         </p>
-        <span className="text-myBlue font-semibold">Rp 100.000</span>
+        <span className="text-myBlue font-semibold">
+          Rp {data.price.toLocaleString("id-ID")}
+        </span>
       </div>
     </Link>
   );
