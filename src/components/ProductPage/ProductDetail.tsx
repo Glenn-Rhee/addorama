@@ -5,76 +5,82 @@ import Delivery from "./Delivery";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import PurchaseCard from "./PurchaseCard";
+import { TProductDetail } from "@/types";
 
-export default function ProductDetail() {
+interface ProductDetailProps {
+  product: TProductDetail;
+}
+
+export default function ProductDetail(props: ProductDetailProps) {
+  const { product } = props;
+
+  console.log("Product Detail", product);
+
   return (
     <div className="px-2 py-4">
       <div className="flex flex-col gap-y-3">
         <div>
           <h4 className="text-myBlack font-semibold text-lg md:text-xl lg:text-2xl">
-            Laptop Acer yang sangat mantap wadidaw
+            {product.productName}
           </h4>
           <div className="flex items-center h-5 gap-x-2 mt-1">
             <Star size={20} color="yellow" fill="yellow" />
             <span className="text-sm font-semibold">
-              4.9{" "}
-              <span className="text-gray-500 font-normal">(500 rating)</span>
+              {Math.floor(product.avgRating) === 0
+                ? 5
+                : Math.floor(product.avgRating)}{" "}
+              <span className="text-gray-500 font-normal">
+                ({product.ratingCount} rating)
+              </span>
             </span>
             <Separator orientation="vertical" className="bg-myBlack" />
             <Heart size={20} color="rgb(220 38 38)" fill="rgb(220 38 38)" />
             <span className="text-sm font-semibold text-myBlack">
-              100 <span className="text-gray-500 font-normal">Favorite</span>
+              {product.countFavorite}{" "}
+              <span className="text-gray-500 font-normal">Favorite</span>
             </span>
             <Separator orientation="vertical" className="bg-myBlack" />
             <span className="text-sm font-semibold text-myBlack">
-              5.9k <span className="text-gray-500 font-normal">review</span>
+              {product.countReview}{" "}
+              <span className="text-gray-500 font-normal">review</span>
             </span>
           </div>
         </div>
         <div className="flex flex-col gap-y-1">
           <span className="text-myBlue font-bold text-lg md:text-xl lg:text-3xl">
-            Rp12.000.000
+            Rp
+            {(
+              product.price -
+              (product.price * product.discount) / 100
+            ).toLocaleString("id-ID")}
           </span>
-          <div className="flex items-center gap-x-1 mt-1">
-            <Badge className="rounded-sm bg-red-200 text-red-600 font-bold px-2 py-0">
-              50%
-            </Badge>
-            <span className="text-base line-through font-semibold text-gray-400">
-              Rp24.000.000
-            </span>
-          </div>
+          {product.discount > 0 ? (
+            <div className="flex items-center gap-x-1 mt-1">
+              <Badge className="rounded-sm hover:bg-red-200 bg-red-200 text-red-600 font-bold px-2 py-0">
+                {product.discount}%
+              </Badge>
+              <span className="text-base line-through font-semibold text-gray-400">
+                Rp{product.price.toLocaleString("id-ID")}
+              </span>
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="mt-8">
-        <p className="font-semibold line-clamp-5">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur
-          voluptatum maxime quasi totam optio consequuntur nesciunt impedit
-          dolorum odit eveniet molestias eligendi beatae, praesentium delectus
-          exercitationem explicabo! Explicabo sit saepe labore quod ea quidem,
-          facilis accusantium magni aut fugiat molestiae sequi temporibus earum,
-          ad perferendis, impedit tenetur. Illum, fugiat accusantium!
-        </p>
+        <p className="font-semibold line-clamp-5">{product.description}</p>
         <div className="flex justify-between items-center min-w-full mt-10">
-          <Link href={"/store/123"} className="flex gap-x-3">
+          <Link href={"/store/" + product.storeId} className="flex gap-x-3">
             <Image
               src="/prof.jpg"
               alt="Profile picture store"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="aspect-square w-auto rounded-full"
             />
-            <div className="space-y-1">
+            <div className="space-y-1 flex items-center">
               <h5 className="font-bold text-sm md:text-base text-myBlack">
-                Electronic Raisya
+                {product.storeName}
               </h5>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-x-2">
-                  <Star color="black" size={18} />
-                  <span className="text-sm text-myBlack">
-                    4.8 <span className="text-gray-500">(10.5k)</span>
-                  </span>
-                </div>
-              </div>
             </div>
           </Link>
           <div>
@@ -85,7 +91,7 @@ export default function ProductDetail() {
         </div>
       </div>
       <Delivery />
-      <PurchaseCard />
+      <PurchaseCard product={product} />
     </div>
   );
 }

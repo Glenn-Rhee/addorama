@@ -2,19 +2,42 @@
 import { Heart, Share2 } from "lucide-react";
 import { Separator } from "../ui/separator";
 import Counter from "../Counter";
+import { TProductDetail } from "@/types";
+import { usePurchaseStore } from "@/store/purchaseStore";
+import { useEffect, useState } from "react";
 
-export default function PurchaseCard() {
-  const stock = 10;
+interface PurchaseCardProps {
+  product: TProductDetail;
+}
+
+export default function PurchaseCard(props: PurchaseCardProps) {
+  const { product } = props;
+  const { qty } = usePurchaseStore();
+  const priceAfterDiscount =
+    product.price - (product.price * product.discount) / 100;
+  const [toalPrice, setTotalPrice] = useState({
+    afterDiscount: priceAfterDiscount * qty,
+    beforeDiscount: product.price * qty,
+  });
+
+  useEffect(() => {
+    if (qty > 0 && qty <= product.stock) {
+      setTotalPrice({
+        afterDiscount: priceAfterDiscount * qty,
+        beforeDiscount: product.price * qty,
+      });
+    }
+  }, [priceAfterDiscount, qty, product.stock, product.price]);
 
   return (
     <div className="w-full bg-white px-3 py-2 border border-gray-500/20 rounded-sm mt-8">
       <h5 className="font-bold text-myBlack">Set Amounts</h5>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-2 lg:gap-y-0 lg:gap-x-1 mt-4">
         <div className="grid grid-cols-[70%_1fr] lg:grid-cols-[55%_1fr] items-center gap-x-2 w-full">
-          <Counter />
+          <Counter stock={product.stock} />
           <div className="flex items-center justify-self-end lg:justify-self-start text-sm font-semibold text-myBlack">
             <span>
-              Stock: <span className="font-bold">{stock}</span>
+              Stock: <span className="font-bold">{product.stock}</span>
             </span>
           </div>
         </div>
@@ -22,10 +45,10 @@ export default function PurchaseCard() {
           <span className="text-sm lg:text-base text-gray-500">Subtotal</span>
           <div className="flex flex-col items-end justify-between">
             <span className="text-sm line-through text-gray-500 font-semibold">
-              Rp24.000.000
+              Rp{toalPrice.beforeDiscount.toLocaleString("id-ID")}
             </span>
             <span className="text-base lg:text-lg font-bold text-myBlack">
-              Rp12.000.000
+              Rp{toalPrice.afterDiscount.toLocaleString("id-ID")}
             </span>
           </div>
         </div>

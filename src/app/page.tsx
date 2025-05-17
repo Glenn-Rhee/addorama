@@ -13,7 +13,7 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
     const dataResponse = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL +
         `/user/products${
-          searchParams.category !== "all"
+          searchParams.category && searchParams.category !== "all"
             ? `?category=${searchParams.category?.toUpperCase()}`
             : ""
         }`,
@@ -24,10 +24,6 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
         },
       }
     );
-
-    if (!dataResponse.ok) {
-      console.log("gagal");
-    }
 
     const products = (await dataResponse.json()) as ResponsePayload;
     if (products.status === "failed") {
@@ -43,11 +39,9 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
   } catch (error) {
     let errorMsg = "";
     if (error instanceof Error) {
-      if (error.message.includes("failed")) {
-        errorMsg = "Failed to get data, please try again!";
-      } else {
-        errorMsg = error.message;
-      }
+      errorMsg = error.message.includes("failed")
+        ? "Failed to get data, please try again!"
+        : error.message;
     } else {
       errorMsg = "Internal Server Error";
     }
@@ -61,7 +55,9 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
             width={200}
             height={200}
           />
-          <h1 className="text-myBlue font-bold text-2xl md:text-3xl lg:text-4xl text-center">{errorMsg}</h1>
+          <h1 className="text-myBlue mt-1 font-bold text-2xl md:text-3xl lg:text-4xl text-center">
+            {errorMsg}
+          </h1>
         </div>
       </Container>
     );

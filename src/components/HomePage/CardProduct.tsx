@@ -15,7 +15,7 @@ export default function CardProduct(props: CardProductProps) {
     <Link
       href={"/product?id=" + data.id}
       className={cn(
-        "flex flex-col p-3 gap-y-2 shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] rounded-sm",
+        "flex flex-col justify-between p-3 gap-y-2 shadow-[1px_1px_14px_1px_rgba(0,_0,_0,_0.2)] rounded-sm",
         className
       )}
     >
@@ -29,16 +29,26 @@ export default function CardProduct(props: CardProductProps) {
         />
       </div>
       <div className="flex flex-col gap-y-2">
-        <h4 className="text-myBlack font-semibold text-lg">
-          {data.productName}
-        </h4>
+        <h4 className="text-myBlack font-semibold">{data.productName}</h4>
         <div className="flex items-center gap-x-1">
-          <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
-          <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
-          <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
-          <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
-          <Star className="text-[#ffc400]" size={15} fill="#ffc400" />
-          <span className="text-gray-400 text-sm">(104)</span>
+          {data.avgRating === 0
+            ? Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  className="text-[#ffc400]"
+                  size={15}
+                  fill="#ffc400"
+                  key={i}
+                />
+              ))
+            : Array.from({ length: Math.floor(data.avgRating) }).map((_, i) => (
+                <Star
+                  className="text-[#ffc400]"
+                  size={15}
+                  fill="#ffc400"
+                  key={i}
+                />
+              ))}
+          <span className="text-gray-400 text-sm">({data.ratingCount})</span>
         </div>
         <p className="text-[#191C1F] line-clamp-2 text-sm">
           {data.description}

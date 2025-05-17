@@ -10,6 +10,7 @@ interface ProductCartProps {
 
 export default function ProductCart(props: ProductCartProps) {
   const { discount } = props;
+  const stock = 4;
   return (
     <div className="grid grid-cols-[1fr_40%]">
       <div className="flex gap-x-4">
@@ -44,7 +45,9 @@ export default function ProductCart(props: ProductCartProps) {
       </div>
       <div className="flex flex-col gap-y-4 items-end justify-between py-3">
         <div className="flex flex-col gap-y-1 w-full items-end ">
-          <h6 className="font-bold text-myBlack text-base md:text-lg">Rp 4.000.000</h6>
+          <h6 className="font-bold text-myBlack text-base md:text-lg">
+            Rp 4.000.000
+          </h6>
           {discount > 0 ? (
             <div className="flex items-center text-sm">
               <span className="text-gray-500 font-semibold">{discount}%</span>
@@ -61,7 +64,7 @@ export default function ProductCart(props: ProductCartProps) {
           <button>
             <Trash2 color="gray" size={20} />
           </button>
-          <Counter className="w-[120px] rounded-xl" />
+          <Counter className="w-[120px] rounded-xl" stock={stock} />
         </div>
       </div>
     </div>

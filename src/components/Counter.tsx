@@ -1,38 +1,50 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { usePurchaseStore } from "@/store/purchaseStore";
 import { useEffect, useState } from "react";
 
 interface CounterProps {
   className?: string;
+  stock: number;
 }
 
 export default function Counter(props: CounterProps) {
-  const { className } = props;
-  const [qty, setQty] = useState<number>(1);
-  const [disable, setDisable] = useState<boolean>(true);
+  const { className, stock } = props;
+  const { qty, incQty, decQty } = usePurchaseStore();
+  const [disable, setDisable] = useState({
+    increment: false,
+    decrement: true,
+  });
 
   useEffect(() => {
-    if (qty === 1) {
-      setDisable(true);
+    if (qty === 1 || qty < 1) {
+      setDisable((prev) => ({ ...prev, decrement: true }));
     } else {
-      setDisable(false);
+      setDisable((prev) => ({ ...prev, decrement: false }));
     }
-  }, [qty]);
+
+    if (qty === stock) {
+      setDisable((prev) => ({ ...prev, increment: true }));
+    } else {
+      setDisable((prev) => ({ ...prev, increment: false }));
+    }
+  }, [qty, stock]);
+
   return (
     <div
       className={cn(
-        "py-0 px-3 rounded-sm border  max-w-[200px] items-center border-myBlue/40 flex justify-between",
+        "py-0 px-3 rounded-sm border max-w-[200px] items-center border-myBlue/40 flex justify-between",
         className
       )}
     >
       <button
-        disabled={disable}
+        disabled={disable.decrement}
         onClick={() => {
-          setQty((prev) => prev - 1);
+          decQty();
         }}
-        className={cn("font-semibold", {
-          "text-myBlue": !disable,
-          "text-gray-500/40": disable,
+        className={cn("font-semibold text-xl", {
+          "text-myBlue": !disable.decrement,
+          "text-gray-500/40": disable.decrement,
         })}
       >
         &ndash;
@@ -41,9 +53,13 @@ export default function Counter(props: CounterProps) {
         {qty}
       </span>
       <button
-        className="text-myBlue font-semibold text-xl"
+        disabled={disable.increment}
+        className={cn("font-semibold text-xl", {
+          "text-myBlue": !disable.increment,
+          "text-gray-500/40": disable.increment,
+        })}
         onClick={() => {
-          setQty((prev) => prev + 1);
+          incQty();
         }}
       >
         &#43;
