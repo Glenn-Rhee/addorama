@@ -14,8 +14,6 @@ interface ProductDetailProps {
 export default function ProductDetail(props: ProductDetailProps) {
   const { product } = props;
 
-  console.log("Product Detail", product);
-
   return (
     <div className="px-2 py-4">
       <div className="flex flex-col gap-y-3">
@@ -71,7 +69,7 @@ export default function ProductDetail(props: ProductDetailProps) {
         <div className="flex justify-between items-center min-w-full mt-10">
           <Link href={"/store/" + product.storeId} className="flex gap-x-3">
             <Image
-              src="/prof.jpg"
+              src={product.urlImageStore}
               alt="Profile picture store"
               width={40}
               height={40}

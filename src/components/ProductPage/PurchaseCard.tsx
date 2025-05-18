@@ -1,10 +1,11 @@
 "use client";
-import { Heart, Share2 } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Separator } from "../ui/separator";
 import Counter from "../Counter";
 import { TProductDetail } from "@/types";
 import { usePurchaseStore } from "@/store/purchaseStore";
 import { useEffect, useState } from "react";
+import ShareDialog from "./ShareDialog";
 
 interface PurchaseCardProps {
   product: TProductDetail;
@@ -55,10 +56,10 @@ export default function PurchaseCard(props: PurchaseCardProps) {
       </div>
       <div className="grid grid-cols-2 gap-x-2 mt-4 md:mt-8">
         <button className="w-full bg-myBlue/10 border border-myBlue/90 text-myBlue text-base hover:bg-white transition-colors duration-100 font-bold rounded-md py-2">
-          Add to cart
+          Buy Now
         </button>
         <button className="w-full bg-myBlue text-white hover:bg-[rgb(31,113,167)] transition-colors duration-100 font-bold rounded-md py-2">
-          Add to cart
+          Add to Cart
         </button>
       </div>
       <div className="grid grid-cols-[1fr_10%_1fr] gap-x-2 mt-4 h-5">
@@ -70,10 +71,7 @@ export default function PurchaseCard(props: PurchaseCardProps) {
           orientation="vertical"
           className="text-myBlack justify-self-center"
         />
-        <button className="flex justify-self-center items-center gap-x-2">
-          <Share2 size={15} />
-          <span className="text-sm font-bold text-myBlack">Share</span>
-        </button>
+        <ShareDialog product={product} />
       </div>
     </div>
   );
