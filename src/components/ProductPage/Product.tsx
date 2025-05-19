@@ -19,7 +19,7 @@ export default function Product(props: ProductProps) {
           alt={`Product Image ${data.productName}`}
           width={500}
           height={500}
-          className="w-auto sticky top-24 left-0 aspect-square justify-self-center"
+          className="w-auto md:sticky top-24 left-0 aspect-square justify-self-center"
         />
         <ProductDetail product={data} />
       </div>
