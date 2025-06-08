@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Your cart in Addroma Shop",
 };
 
-export default function CartPage() {
+export default async function CartPage() {
   const isEmpty = true;
   return (
     <Container className="lg:px-20 md:px-[70px] px-6 mb-[80px] overflow-visible">

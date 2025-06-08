@@ -88,7 +88,7 @@ export default function ProductDetail(props: ProductDetailProps) {
           </div>
         </div>
       </div>
-      <Delivery />
+      <Delivery product={product} />
       <PurchaseCard product={product} />
     </div>
   );

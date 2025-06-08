@@ -9,7 +9,6 @@ interface CardsProps {
 export default function Cards(props: CardsProps) {
   const { dataResponse } = props;
   const data = dataResponse.data as ProductMain[];
-
   return (
     <ShellCardProduct>
       {data.map((product) => (

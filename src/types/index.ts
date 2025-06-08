@@ -36,4 +36,37 @@ export interface TProductDetail {
   urlImageStore: string;
   countReview: number;
   countFavorite: number;
+  city: string;
+  zipCode: string;
+}
+
+export interface TShippingResponsePayload {
+  data: DataShipping;
+  meta: MetaShipping;
+}
+
+interface MetaShipping {
+  message: string;
+  code: number;
+  status: "success" | "failed";
+}
+
+interface DataShipping {
+  calculate_reguler: Shipping[];
+  calculate_cargo: Shipping[];
+  calculate_instan: Shipping[];
+}
+
+interface Shipping {
+  etd: string;
+  grandtotal: number;
+  is_cod: boolean;
+  net_income: number;
+  service_fee: number;
+  service_name: string;
+  shipping_cashback: number;
+  shipping_cost: number;
+  shipping_cost_net: number;
+  shipping_name: string;
+  weight: number;
 }
