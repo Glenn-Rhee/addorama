@@ -15,7 +15,7 @@ import SubTitle from "../SubTitle";
 import { Input } from "@/components/ui/input";
 import InputPhone from "./InputPhone";
 import AuthAction from "../AuthAction";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignupForm() {
   const form = useForm<z.infer<typeof UserModel.SIGNUP>>({
@@ -31,6 +31,42 @@ export default function SignupForm() {
     },
   });
   const [isLoading, setIsLoading] = useState(false);
+  const date = form.watch("dateOfBirth");
+  const phone = form.watch("phone");
+
+  useEffect(() => {
+    const regex = /[^0-9-]/g;
+    if (regex.test(date)) {
+      form.setValue("dateOfBirth", date.replace(regex, ""));
+    }
+
+    if (date.length === 5 && !date.endsWith("-")) {
+      const year = date.slice(0, 4);
+      const result = date.charAt(date.length - 1);
+      form.setValue("dateOfBirth", year + "-" + result);
+    }
+
+    if (date.length === 8 && !date.endsWith("-")) {
+      const year = date.slice(0, 7);
+      const result = date.charAt(date.length - 1);
+      form.setValue("dateOfBirth", year + "-" + result);
+    }
+
+    if (date.length !== 5 && date.length !== 8 && date.endsWith("-")) {
+      form.setValue("dateOfBirth", date.slice(0, -1));
+    }
+  }, [date, form]);
+
+  useEffect(() => {
+    const regex = /[^0-9]/g;
+    if (regex.test(phone)) {
+      form.setValue("phone", phone.replace(regex, ""));
+    }
+
+    if (phone.startsWith("0")) {
+      form.setValue("phone", phone.slice(1));
+    }
+  }, [phone, form]);
 
   async function submitForm(
     values: z.infer<typeof UserModel.SIGNUP>
