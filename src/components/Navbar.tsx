@@ -1,3 +1,4 @@
+"use client";
 import { Heart, Menu, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,8 +14,12 @@ import SearchProduct from "./SearchProduct";
 import Container from "./Container";
 import { Suspense } from "react";
 import DropdownUser from "./DropdownUser";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathName = usePathname();
+
+  if (pathName.includes("auth")) return null;
   return (
     <Suspense>
       <nav className="fixed top-0 z-50 right-0 left-0 px-4 py-2 md:px-10 md:py-5 bg-[#1B6392]">
