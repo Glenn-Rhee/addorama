@@ -16,6 +16,9 @@ import { Input } from "@/components/ui/input";
 import InputPhone from "./InputPhone";
 import AuthAction from "../AuthAction";
 import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { ResponsePayload } from "@/types";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
   const form = useForm<z.infer<typeof UserModel.SIGNUP>>({
@@ -31,6 +34,8 @@ export default function SignupForm() {
     },
   });
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const { toast } = useToast();
   const date = form.watch("dateOfBirth");
   const phone = form.watch("phone");
 
@@ -72,7 +77,50 @@ export default function SignupForm() {
     values: z.infer<typeof UserModel.SIGNUP>
   ): Promise<void> {
     setIsLoading(true);
-    console.log("Form submitted with values:", values);
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+      const response = await fetch(
+        `${baseUrl}/user/auth/signup?from=e_commerce`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...values,
+            phone: "+62" + values.phone,
+          }),
+        }
+      );
+      const data = (await response.json()) as ResponsePayload;
+      if (data.status === "failed") {
+        throw new Error(data.message);
+      }
+
+      toast({
+        title: "Success",
+        description: "Account created successfully!",
+      });
+      router.push("/");
+
+
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({
+          title: "Oops! Something went wrong",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Oops! Something went wrong",
+          description: "An unexpected error occurred.",
+          variant: "destructive",
+        });
+      }
+
+      setIsLoading(false);
+    }
   }
 
   return (

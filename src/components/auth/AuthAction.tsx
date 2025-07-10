@@ -17,7 +17,7 @@ export default function AuthAction(props: AuthActionProps) {
     <div className="flex flex-col justify-center mt-8 items-center gap-y-4">
       <Button
         type="submit"
-        className={cn("w-full", { "cursor-not-allowed": isLoading })}
+        className={cn("w-full bg-myBlue font-semibold hover:bg-[#228cd3]", { "cursor-not-allowed": isLoading })}
         disabled={isLoading}
       >
         {isLoading ? <LoaderCircle className="animate-spin" /> : children}
