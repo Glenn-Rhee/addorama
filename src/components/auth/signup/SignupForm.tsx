@@ -90,6 +90,7 @@ export default function SignupForm() {
             ...values,
             phone: "+62" + values.phone,
           }),
+          credentials: "include",
         }
       );
       const data = (await response.json()) as ResponsePayload;
