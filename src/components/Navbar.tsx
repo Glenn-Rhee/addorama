@@ -12,12 +12,23 @@ import {
 } from "./ui/dropdown-menu";
 import SearchProduct from "./SearchProduct";
 import Container from "./Container";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import DropdownUser from "./DropdownUser";
 import { usePathname } from "next/navigation";
+import { useTokenStore } from "@/store/tokenStore";
 
-export default function Navbar() {
+interface NavbarProps {
+  xtr: string | undefined;
+}
+
+export default function Navbar(props: NavbarProps) {
+  const { xtr } = props;
   const pathName = usePathname();
+  const { setXtr } = useTokenStore();
+
+  useEffect(() => {
+    setXtr(xtr || "");
+  }, [xtr, setXtr]);
 
   if (pathName.includes("auth")) return null;
   return (

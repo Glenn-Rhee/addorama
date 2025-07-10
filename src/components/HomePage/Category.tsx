@@ -2,21 +2,14 @@
 import { useEffect } from "react";
 import OptionCategory from "./OptionCategory";
 import { useRouter } from "next/navigation";
-import { useTokenStore } from "@/store/tokenStore";
 
 interface CategoryProps {
   category: string | undefined;
-  xtr: string | undefined;
 }
 
 export default function Category(props: CategoryProps) {
-  const { category, xtr } = props;
+  const { category } = props;
   const router = useRouter();
-  const { setXtr } = useTokenStore();
-
-  useEffect(() => {
-    setXtr(xtr || "")
-  }, [xtr, setXtr])
 
   useEffect(() => {
     if (

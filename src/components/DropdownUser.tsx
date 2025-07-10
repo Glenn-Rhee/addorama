@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { DataUser, ResponsePayload } from "@/types";
 import { Skeleton } from "./ui/skeleton";
+import Image from "next/image";
 
 interface DropdownUserProps {
   children?: React.ReactNode;
@@ -86,7 +87,19 @@ export default function DropdownUser(props: DropdownUserProps) {
       <DropdownMenuTrigger asChild>
         {children || (
           <button>
-            <User size={25} />
+            {isLoading ? (
+              <Skeleton className="h-[30px] w-[30px] bg-gray-400 rounded-full" />
+            ) : dataUser.image === "" ? (
+              <User size={25} />
+            ) : (
+              <Image
+                src={dataUser.image}
+                alt={`Profile user ${dataUser.username}`}
+                width={30}
+                height={30}
+                className="rounded-full object-cover aspect-square"
+              />
+            )}
           </button>
         )}
       </DropdownMenuTrigger>
