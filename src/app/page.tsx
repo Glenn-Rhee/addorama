@@ -3,11 +3,14 @@ import Container from "@/components/Container";
 import Cards from "@/components/HomePage/Cards";
 import { ResponsePayload } from "@/types";
 import Image from "next/image";
+import { cookies } from "next/headers";
 
 type SearchParams = Promise<{ [key: string]: string | undefined }>;
 
 export default async function HomePage(props: { searchParams: SearchParams }) {
   const searchParams = await props.searchParams;
+  const cookiesStore = await cookies();
+  const xtr = cookiesStore.get("xtr")?.value;
 
   try {
     const dataResponse = await fetch(
@@ -32,7 +35,7 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
 
     return (
       <Container className="lg:px-20 md:px-[70px] px-6">
-        <Category category={searchParams.category?.toLowerCase()} />
+        <Category xtr={xtr} category={searchParams.category?.toLowerCase()} />
         <Cards dataResponse={products} />
       </Container>
     );
@@ -47,7 +50,7 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
     }
     return (
       <Container className="lg:px-20 md:px-[70px] px-6">
-        <Category category={searchParams.category?.toLowerCase()} />
+        <Category xtr={xtr} category={searchParams.category?.toLowerCase()} />
         <div className="w-full flex items-center mt-8 flex-col justify-center h-[70vh]">
           <Image
             src={"/error-server.png"}

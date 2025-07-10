@@ -70,3 +70,18 @@ interface Shipping {
   shipping_name: string;
   weight: number;
 }
+
+export interface DataUser {
+  id: string;
+  username: string;
+  email: string;
+  fullname: string;
+  gender: "MALE" | "FEMALE" | "UNKNOWN";
+  dataOfBirth: Date;
+  phone: string;
+  address: string;
+  sosmed: string;
+  city: string;
+  zipCode: string;
+  urlImage: string;
+}
